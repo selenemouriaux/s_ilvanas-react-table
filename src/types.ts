@@ -1,23 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentPropsWithoutRef } from "react"
 
-export type SivTableData = {
-  firstName?: string
-  lastName?: string
-  startDate?: string
-  department?: string
-  dateOfBirth?: string
-  street?: string
-  city?: string
-  state?: string
-  zipCode?: number | string
-  [key: string]: any
-}
-
-export type SivTableState = {
-  employeesList: SivTableData[]
-}
-
 export type Column = {
   title?: string
   name: string
@@ -25,15 +8,6 @@ export type Column = {
   $priority?: number
   disableSorting?: boolean
 } & ComponentPropsWithoutRef<"div">
-
-export type SivTableProps = {
-  occupiedHeight: number
-  data: SivTableData[]
-  columns: Column[] | []
-  title?: string
-  noSearchBar?: boolean
-  style?: any
-}
 
 export type SortingOption = {
   name: string
@@ -56,7 +30,7 @@ export type MinHeightProps = {
   padding?: number
 }
 
-export type DataRowProps = {
+export type DataRowProps<SivTableData> = {
   dataRow: SivTableData
   colsOrder: string[]
   index: number

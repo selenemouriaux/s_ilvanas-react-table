@@ -43,7 +43,12 @@ const PaginationControls = ({
         onClick={() => setCurrentPage(1)}
         disabled={currentPage <= 1}
       >
-        <Icon $type="IconProps" theme={theme} src={toFirstIcon} />
+        <Icon
+          $type="IconProps"
+          alt="back to first page icon"
+          theme={theme}
+          src={toFirstIcon}
+        />
       </NavButton>
       <NavButton
         $type="NavButtonProps"
@@ -51,7 +56,12 @@ const PaginationControls = ({
         onClick={() => setCurrentPage(currentPage - 1)}
         disabled={currentPage <= 1}
       >
-        <Icon $type="IconProps" theme={theme} src={prevIcon} />
+        <Icon
+          $type="IconProps"
+          alt="previous page icon"
+          theme={theme}
+          src={prevIcon}
+        />
       </NavButton>
       {showLeftEllipsis && <span className="ellipsis">...</span>}
       {pageNumbers.map((pageNumber) => (
@@ -74,7 +84,12 @@ const PaginationControls = ({
         }
         disabled={currentPage >= totalPages}
       >
-        <Icon $type="IconProps" theme={theme} src={nextIcon} />
+        <Icon
+          $type="IconProps"
+          alt="next page icon"
+          theme={theme}
+          src={nextIcon}
+        />
       </NavButton>
       <NavButton
         $type="NavButtonProps"
@@ -82,7 +97,12 @@ const PaginationControls = ({
         onClick={() => setCurrentPage(totalPages)}
         disabled={currentPage >= totalPages}
       >
-        <Icon $type="IconProps" theme={theme} src={toLastIcon} />
+        <Icon
+          $type="IconProps"
+          alt="straight to last page icon"
+          theme={theme}
+          src={toLastIcon}
+        />
       </NavButton>
     </Guide>
   )

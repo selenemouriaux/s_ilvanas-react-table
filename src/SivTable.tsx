@@ -19,12 +19,7 @@ import {
   Wrapper,
 } from "./styles/styles.ts"
 import { presets } from "./styles/styling-presets.ts"
-import {
-  SivTableData,
-  SivTableProps,
-  SortingOption,
-  TableSizeProps,
-} from "./types.ts"
+import { Column, SortingOption, TableSizeProps } from "./types.ts"
 import {
   getMinWidth,
   getPaginationItemsNbByHeight,
@@ -34,6 +29,16 @@ import {
   sortingIcon,
   updateSort,
 } from "./utils.ts"
+
+export type SivTableProps<SivTableData> = {
+  occupiedHeight: number
+  data: SivTableData[]
+  columns: Column[] | []
+  title?: string
+  noSearchBar?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  style?: any
+}
 
 /**
  * This component turns an array of data into an actual table. Customizable and responsive.
@@ -45,14 +50,14 @@ import {
  * @param noSearchBar boolean which deactivates the search bar.
  * @returns a table of the passed data following standard lib output or options passed
  */
-const SivTable = ({
+const SivTable = <SivTableData extends object>({
   occupiedHeight,
   data,
   columns = [],
   title,
   noSearchBar = false,
   style,
-}: SivTableProps) => {
+}: SivTableProps<SivTableData>) => {
   const [newData, setNewData] = useState<SivTableData[]>(
     makeDatesGreatAgain(data)
   )
@@ -236,6 +241,7 @@ const SivTable = ({
                   sortingIcon({ sortingOptions, colName: name ?? "" }) ??
                   sortIcon
                 }
+                alt="sorting icon"
                 $type="IconProps"
                 theme={theme}
               />
@@ -250,7 +256,12 @@ const SivTable = ({
             width="50px"
             theme={theme}
           >
-            <Icon $type="IconProps" src={resetIcon} theme={theme} />
+            <Icon
+              $type="IconProps"
+              alt="reset sorting icon"
+              src={resetIcon}
+              theme={theme}
+            />
           </ColumnTitle>
         ),
     [updatedCols, computedColumns, onClickSort, resetSorting]
@@ -320,6 +331,7 @@ const SivTable = ({
                         $type="IconProps"
                         $visibleOnHover
                         src={moreIcon}
+                        alt="show hidden details icon"
                         theme={theme}
                       />
                     )}

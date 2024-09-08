@@ -50,7 +50,12 @@ const SearchBar = ({
             theme={theme}
             onClick={handleSearch}
           >
-            <Icon $type="IconProps" theme={theme} src={searchIcon} />
+            <Icon
+              $type="IconProps"
+              alt="search icon"
+              theme={theme}
+              src={searchIcon}
+            />
           </SearchButton>
         ) : (
           <SearchButton
@@ -58,7 +63,12 @@ const SearchBar = ({
             theme={theme}
             onClick={ditchFilter}
           >
-            <Icon $type="IconProps" theme={theme} src={deleteIcon} />
+            <Icon
+              $type="IconProps"
+              alt="delete search text icon"
+              theme={theme}
+              src={deleteIcon}
+            />
           </SearchButton>
         )}
       </Guide>
