@@ -4,7 +4,8 @@ import { DataRowProps } from "../types"
 import { formatIfDate } from "../utils"
 import { highlightMatch } from "./highlightMatch"
 
-const RenderDataRow = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const RenderDataRow = <T extends Record<string, any>>({
   dataRow,
   index,
   colsOrder,
@@ -18,7 +19,7 @@ const RenderDataRow = ({
   query,
   theme,
   ...props
-}: DataRowProps) => (
+}: DataRowProps<T>) => (
   <tr key={`line-${index}`}>
     {Object.values(dataRow).map((value, idx) => (
       <Cell

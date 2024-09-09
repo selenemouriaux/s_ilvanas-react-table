@@ -43,11 +43,12 @@ export type SivTableProps<SivTableData> = {
 /**
  * This component turns an array of data into an actual table. Customizable and responsive.
  * @component
+ * @param occupiedHeight defines the height of the window that is reserved for the app, allows to keep the table within the viewport with no scroll, preferably dynamic, numeric value.
  * @param data is the array of objects to be displayed in the table.
  * @param columns identifies each data by column to return either raw if no render method specified or processed if the object includes a render method, it accepts a 'title', a 'name' which should match the field, a 'width' if you want it fixed, and a $priority which, when defined from 1 up, will remain visible when the global width is reduced.
- * @param occupiedHeight defines the height of the window that is reserved for the app, allows to keep the table within the viewport with no scroll, preferably dynamic, numeric value.
- * @param theme standard themes can be selected from presets, hrnet or blackNwhite, custom partial override cans be provided following examples in documentatione. it overrides the default theme.
+ * @param title give the table a title.
  * @param noSearchBar boolean which deactivates the search bar.
+ * @param style standard themes can be selected from presets, hrnet or blackNwhite, custom partial override cans be provided following examples in documentatione. it overrides the default theme.
  * @returns a table of the passed data following standard lib output or options passed
  */
 const SivTable = <SivTableData extends object>({

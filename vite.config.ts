@@ -1,14 +1,8 @@
-import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react-swc"
-import dts from "vite-plugin-dts"
+import { defineConfig } from "vite"
 
 export default defineConfig({
-  plugins: [
-    react(),
-    dts({
-      insertTypesEntry: true,
-    }),
-  ],
+  plugins: [react()],
   build: {
     lib: {
       entry: "src/index.tsx",

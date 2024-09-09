@@ -4,7 +4,8 @@ import { DataRowProps } from "../types"
 import { formatIfDate } from "../utils"
 import { highlightMatch } from "./highlightMatch"
 
-const RenderHiddenRow = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const RenderHiddenRow = <T extends Record<string, any>>({
   dataRow,
   index,
   colsOrder,
@@ -18,7 +19,7 @@ const RenderHiddenRow = ({
   query,
   theme,
   ...props
-}: DataRowProps): ReactNode => {
+}: DataRowProps<T>): ReactNode => {
   return (
     <tr key={`extraLine-${index}`}>
       <Cell

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { orderBy } from "lodash"
 import { FONT_FAMILY_MAIN, FONT_SIZE_HEADINGS } from "./constants"
 import sortAsc from "./icons/sort-asc.svg"
@@ -6,7 +7,6 @@ import {
   MinHeightProps,
   MinusScrollBarProps,
   MinWidthProps,
-  SivTableData,
   SortingIconProps,
   SortingOption,
 } from "./types"
@@ -29,17 +29,18 @@ export function updateSort(
   return sortingOptions
 }
 
-export function sortingData(
+export function sortingData<SivTableData extends Record<string, any>>(
   data: SivTableData[],
   sortingOptions: SortingOption[]
-) {
+): SivTableData[] {
   sortingOptions = sortingOptions.slice(-2)
-  if (data.length)
+  if (data.length) {
     return orderBy(
       data,
-      sortingOptions.map(({ name }) => name),
+      sortingOptions.map(({ name }) => name as keyof SivTableData),
       sortingOptions.map(({ type }) => type)
     )
+  }
   return data
 }
 
@@ -50,15 +51,20 @@ const isDate = (dateStr: string): boolean => {
   return !Number.isNaN(date) && datePattern.test(dateStr)
 }
 
-export function makeDatesGreatAgain(data: SivTableData[]) {
+export function makeDatesGreatAgain<SivTableData extends Record<string, any>>(
+  data: SivTableData[]
+): SivTableData[] {
   return data.map((item) => {
-    const newItem = { ...item }
+    const newItem: Partial<SivTableData> = { ...item }
     Object.keys(newItem).forEach((key) => {
-      if (isDate(newItem[key])) {
-        newItem[key] = new Date(newItem[key])
+      const keyTyped = key as keyof SivTableData
+      if (isDate(newItem[keyTyped] as unknown as string)) {
+        newItem[keyTyped] = new Date(
+          newItem[keyTyped] as unknown as string
+        ) as SivTableData[keyof SivTableData]
       }
     })
-    return newItem
+    return newItem as SivTableData
   })
 }
 
@@ -132,7 +138,10 @@ export function getWidth(id: string): string {
   return width ? `${width}px` : ""
 }
 
-export function reOrderRow(row: SivTableData, order: string[]) {
+export function reOrderRow<SivTableData>(
+  row: SivTableData,
+  order: (keyof SivTableData)[]
+) {
   const orderedRow: Partial<SivTableData> = {}
   order.forEach((key) => {
     orderedRow[key] = row[key]
