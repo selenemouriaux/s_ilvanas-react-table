@@ -1,6 +1,6 @@
 # React component for tables : SivTable
 
-![Glimpse of SivTable](/public/Animation.gif)
+![Glimpse of SivTable](https://imgur.com/Squ64BQ.gif)
 
 ## Description
 
