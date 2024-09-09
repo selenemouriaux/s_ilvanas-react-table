@@ -1,6 +1,6 @@
 {
   "name": "siv-table",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Table viewer for usage within the viewport, comes with search, sorting and pagination",
   "main": "dist/siv-table.cjs.js",
